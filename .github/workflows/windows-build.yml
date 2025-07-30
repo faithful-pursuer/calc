@@ -19,7 +19,7 @@ jobs:
           pip install customtkinter pyinstaller
 
       - name: Build EXE
-        run: pyinstaller --noconfirm --onefile main.py
+        run: pyinstaller --noconfirm --onefile ctk_app.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
