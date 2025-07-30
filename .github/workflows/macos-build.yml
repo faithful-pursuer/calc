@@ -1,0 +1,25 @@
+name: Build macOS App
+
+on: [push]
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || true
+          pip install customtkinter pyinstaller
+      - name: Build macOS app
+        run: pyinstaller --noconfirm --onefile calc.py
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-build
+          path: dist/*
+
