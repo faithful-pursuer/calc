@@ -88,7 +88,6 @@ windows: pyinstaller --name Calc --onefile main.py --add-data "main.qml;." --add
 
 * **Blank window** → confirm QML path passed to `engine.load(...)` is correct.
 * **Icons or QML missing in build** → check PyInstaller `--add-data` entries.
-* **Fonts look off** → ship fonts and load with `FontLoader {}` in QML.
 * **High CPU on hover** → reduce `NumberAnimation` duration or remove heavy `ShaderEffect`s.
 
 ---
