@@ -1,6 +1,7 @@
 name: Build macOS App
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   build-macos:
@@ -10,13 +11,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.13'
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt || true
-          pip install customtkinter pyinstaller
+          python -m pip install --upgrade pip
+          pip install pyinstaller PySide6
+          
       - name: Build macOS app
-        run: pyinstaller --noconfirm --onefile calc.py
+        run: pyinstaller --name Calc --onefile main.py --add-data "main.qml;." --add-data "calc.svg;." --icon=calc.ico --noconsole --noupx
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
