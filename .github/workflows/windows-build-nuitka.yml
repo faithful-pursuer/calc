@@ -16,9 +16,9 @@ jobs:
 
       - name: Download Dependency Walker
         run: |
-          curl -L -o depends.zip https://dependencywalker.com/depends64.zip
-          mkdir -p "$env:LOCALAPPDATA\Nuitka\Nuitka\Cache\depends\x86_64"
-          tar -xf depends.zip -C "$env:LOCALAPPDATA\Nuitka\Nuitka\Cache\depends\x86_64"
+          Invoke-WebRequest -Uri "https://github.com/Nuitka/DependencyWalker/releases/download/2020.05/depends64.zip" -OutFile depends64.zip
+          Expand-Archive -Path depends64.zip -DestinationPath "$env:LOCALAPPDATA\Nuitka\Nuitka\Cache\depends\x86_64"
+  
 
 
       - name: Install dependencies
