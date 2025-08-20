@@ -1,4 +1,4 @@
-name: Build Windows EXE -Nuitka
+name: Build Windows EXE - Nuitka
 
 on:
   workflow_dispatch:
@@ -16,10 +16,8 @@ jobs:
 
       - name: Download Dependency Walker
         run: |
-          Invoke-WebRequest -Uri "https://github.com/Nuitka/DependencyWalker/releases/download/2020.05/depends64.zip" -OutFile depends64.zip
+          Invoke-WebRequest -Uri "http://dependencywalker.com/depends22_x64.zip" -OutFile depends64.zip
           Expand-Archive -Path depends64.zip -DestinationPath "$env:LOCALAPPDATA\Nuitka\Nuitka\Cache\depends\x86_64"
-  
-
 
       - name: Install dependencies
         run: |
@@ -28,7 +26,15 @@ jobs:
 
       - name: Build EXE with Nuitka
         run: |
-          python -m nuitka --standalone --onefile --enable-plugin=pyside6 --include-qt-plugins=qml --include-data-files=main.qml=main.qml --include-data-files=calc.svg=calc.svg --windows-icon-from-ico=calc.ico --output-filename=calc.exe main.py
+          python -m nuitka ^
+            --standalone ^
+            --onefile ^
+            --enable-plugin=pyside6 ^
+            --include-qt-plugins=qml ^
+            --include-data-files=main.qml=main.qml ^
+            --include-data-files=calc.svg=calc.svg ^
+            --windows-icon-from-ico=calc.ico ^
+            --output-filename=calc.exe main.py
 
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
