@@ -35,7 +35,8 @@ jobs:
             --include-data-files=calc.svg=calc.svg `
             --windows-icon-from-ico=calc.ico `
             --output-filename=calc.exe main.py
-
+        env:
+          NUITKA_AUTO_UPDATE_DEPENDENCIES: yes
 
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
