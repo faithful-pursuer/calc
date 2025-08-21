@@ -76,7 +76,7 @@ Create a self‑contained executable. Update paths for your project layout and a
 ```bash
 Linux: pyinstaller --name Calc --onefile main.py  --add-data "main.qml:."  --add-data "calc.svg:."  --nocolsole --noupx
 MacOS: pyinstaller --name Calc --onefile main.py  --add-data "main.qml:."  --add-data "calc.svg:."  --windowed --noupx
-windows: pyinstaller --name Calc --onefile main.py --add-data "main.qml;." --add-data "calc.svg;." --icon=calc.ico  --nocolsole --noupx
+windows: pyinstaller --name Calc --onefile main.py --add-data "main.qml;." --add-data "calc.svg;." --icon=calc.ico  --noconsole --noupx
 
 ```
 
